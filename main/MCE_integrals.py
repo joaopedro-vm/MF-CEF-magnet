@@ -84,7 +84,7 @@ plt.ylabel("$-\Delta$S")
 plt.legend()
 plt.xlim(0, 140)
 plt.hlines(0, 0, 140)
-plt.show()
+plt.savefig("dSvsT[001]_int.png", format="png", dpi=300, bbox_to_inches=True)
 
 ##############################################################################
 # Heat Capacity calculations below
@@ -107,4 +107,4 @@ plt.xlabel("T")
 plt.ylabel(r"Heat Capacity (J$\;\!$mol$^{-1}\;\!$K$^{-1}$)")
 plt.xlim(0, 140)
 plt.hlines(0, 0, 140)
-plt.show()
+plt.savefig("CvsT.png", format="png", dpi=300, bbox_to_inches=True)

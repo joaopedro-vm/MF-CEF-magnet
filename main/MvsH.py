@@ -113,7 +113,7 @@ plt.legend()
 plt.xlim(0, 10); plt.ylim(5, 11)
 plt.xlabel("B (T)", fontsize=20)
 plt.ylabel(r"M ($\mu_{B}$)", fontsize=20)
-plt.show()
+plt.savefig("MvsH.png", format="png", dpi=300, bbox_to_inches=True)
 
 ##############################################################################
 
@@ -138,4 +138,4 @@ plt.scatter(*theta_B.T)
 plt.xlim(0, 10); plt.ylim(0, 60)
 plt.xlabel("B (T)", fontsize=20)
 plt.ylabel(r"$\Theta(B)$", fontsize=20)
-plt.show()
+plt.savefig("thetavsH.png", format="png", dpi=300, bbox_to_inches=True)

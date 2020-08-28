@@ -72,7 +72,7 @@ plt.xlabel("T"); plt.ylabel("$-\Delta$S")
 plt.legend()
 plt.xlim(0, 140)
 plt.hlines(0, 0, 140)
-plt.show()
+plt.savefig("dSvsT[001].png", format="png", dpi=300, bbox_to_inches=True)
 
 ##############################################################################
 
@@ -101,6 +101,16 @@ for i in range(n):
         S_T011[i, k] = S(E, T[i])
         
         print("H = %.2f, T <001>: %.2f%%" % (H[k,0], (i*len(h)+k+1)/(n*len(h))*100))
+
+# Plotting DeltaS vs T results
+
+plt.plot(T, -(S_T011[:,1]-S_T011[:,0]), label="H: 0 $\rightarrow$ 2 T")
+plt.plot(T, -(S_T011[:,2]-S_T011[:,0]), label="H: 0 $\rightarrow$ 5 T")
+plt.xlabel("T")
+plt.ylabel("$-\Delta$S")
+plt.legend(); plt.xlim(0, 80)
+plt.hlines(0, 0, 80)
+plt.savefig("dSvsT[011].png", format="png", dpi=300, bbox_to_inches=True)
 
 ##############################################################################
 
@@ -134,10 +144,10 @@ for i in range(n):
 
 # Plotting DeltaS vs T results
 
-plt.plot(T, -(dS_T111[:,1]-dS_T111[:,0]), label="H: 0 $\rightarrow$ 2 T")
-plt.plot(T, -(dS_T111[:,2]-dS_T111[:,0]), label="H: 0 $\rightarrow$ 5 T")
+plt.plot(T, -(S_T111[:,1]-S_T111[:,0]), label="H: 0 $\rightarrow$ 2 T")
+plt.plot(T, -(S_T111[:,2]-S_T111[:,0]), label="H: 0 $\rightarrow$ 5 T")
 plt.xlabel("T")
 plt.ylabel("$-\Delta$S")
 plt.legend(); plt.xlim(0, 80)
 plt.hlines(0, 0, 80)
-plt.show()
+plt.savefig("dSvsT[111].png", format="png", dpi=300, bbox_to_inches=True)

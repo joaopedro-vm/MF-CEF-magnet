@@ -16,7 +16,7 @@ actual calculations.
 import numpy as np # Deal with arrays and matrices
 import matplotlib.pyplot as plt # Plotting
 from math import atan2 #
-from numba import njit # Numba derocator for pre compilation
+from numba import njit # Numba decorator for pre compilation
 
 ##############################################################################
 
