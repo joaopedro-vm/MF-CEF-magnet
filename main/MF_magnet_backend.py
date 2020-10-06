@@ -258,7 +258,7 @@ def Hamiltonian(H, M, j):
             ket_ += B4 * ( O40(ket) + 5*O44(ket) )
             ket_ += B6 * ( O60(ket) - 21*O64(ket) )
             
-            mat[a,b] = np.vdot(bra, ket_)
+            mat[a,b] = np.sum(np.conj(bra) * ket_)
             
     return mat
 M = np.array([1., 1., 1.])*muB
@@ -322,9 +322,9 @@ def mag(H, M, j, T):
     
     for i in range(len(E)):
         
-        Mx += np.vdot(E_kets[:,i], Jx(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
-        My += np.vdot(E_kets[:,i], Jy(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
-        Mz += np.vdot(E_kets[:,i], Jz(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
+        Mx += np.sum(np.conj(E_kets[:,i]) * Jx(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
+        My += np.sum(np.conj(E_kets[:,i]) * Jy(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
+        Mz += np.sum(np.conj(E_kets[:,i]) * Jz(E_kets[:,i])) * np.exp(-E[i]/(kB*T))
         
     return np.array([np.real(Mx), np.real(My), np.real(Mz)], dtype=np.float64) / Z * g_Dy * muB
 mag(H, M, 2, 1)
@@ -335,7 +335,7 @@ def mh(H, M):
     # H: magnetic field
     # M: average magnetization
     
-    return np.vdot(H, M) / np.linalg.norm(H)
+    return np.sum(np.conj(H) * M) / np.linalg.norm(H)
 mh(H, M)
 
 # Get magnetization (J/T) minimizing free energy
@@ -350,7 +350,7 @@ def sc_mag_min_F(H, j, T, prec, cut, v1, v2):
     # v2: direction up to which to rotate v1 searching for the correct magnetization
     
     n = 20 # Number of initial guesses rotating v1 up to v2's direction
-    theta_max = np.arccos(min(1., np.vdot(v1, v2)/np.linalg.norm(v1)/np.linalg.norm(v2)))
+    theta_max = np.arccos(min(1., np.sum(np.conj(v1) * v2)/np.linalg.norm(v1)/np.linalg.norm(v2)))
     theta = np.linspace(0, theta_max, n)
     
     lat = np.zeros((n, 3), dtype=np.float64)
